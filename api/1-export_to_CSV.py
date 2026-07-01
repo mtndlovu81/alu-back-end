@@ -25,7 +25,7 @@ def export_todo_to_csv(employee_id):
     employee_todos = [x for x in todos if x.get("userId") == employee_id]
     tasks_completed = [x for x in employee_todos if x.get("completed")]
 
-    employee_name = user.get("name")
+    employee_name = user.get("username")
 
     headers = ["USER_ID", "USERNAME", "TASK_COMPLETED_STATUS", "TASK_TITLE"]
     rows = [
