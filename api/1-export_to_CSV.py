@@ -23,8 +23,6 @@ def export_todo_to_csv(employee_id):
     user = requests.get(f"{API_URL}/users/{employee_id}").json()
     todos = requests.get(f"{API_URL}/todos").json()
     employee_todos = [x for x in todos if x.get("userId") == employee_id]
-    tasks_completed = [x for x in employee_todos if x.get("completed")]
-
     employee_name = user.get("username")
 
     headers = ["USER_ID", "USERNAME", "TASK_COMPLETED_STATUS", "TASK_TITLE"]
@@ -39,7 +37,11 @@ def export_todo_to_csv(employee_id):
     ]
 
     with open(f"{employee_id}.csv", "w", newline="", encoding="utf-8") as file:
-        writer = csv.DictWriter(file, fieldnames=headers, quoting=csv.QUOTE_ALL)
+        writer = csv.DictWriter(
+            file,
+            fieldnames=headers,
+            quoting=csv.QUOTE_ALL
+            )
         writer.writerows(rows)
 
 
