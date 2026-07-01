@@ -39,7 +39,7 @@ def export_todo_to_csv(employee_id):
     ]
 
     with open(f"{employee_id}.csv", "w", newline="", encoding="utf-8") as file:
-        writer = csv.DictWriter(file, fieldnames=headers)
+        writer = csv.DictWriter(file, fieldnames=headers, quoting=csv.QUOTE_ALL)
         writer.writerows(rows)
 
 
